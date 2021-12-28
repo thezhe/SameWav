@@ -1,19 +1,46 @@
-# name: Build and Test
+name: Build and Test
 
-# on:
-#   push:
-#    branches:
-#     - master
+on:
+  push:
+   branches:
+    - master
 
-# jobs:
-#   build:
-#     name: build-native
-#     runs-on: ${{matrix.os}}
-#     strategy:
-#       matrix:
-#         os: [windows-latest, macos-11]
-#         include:
-#           - os: macos-11
-#             artifact_ext: mac
-#           - os: windows-latest
-#             artifact_ext: win
+jobs:
+  build-test:
+    name: build-test-native
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os: [windows-latest, macos-11]
+        include:
+          - os: macos-11
+            artifact_ext: mac
+          - os: windows-latest
+            artifact_ext: win
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: build-test-win
+        if: matrix.os == 'windows-latest' 
+        run: |
+          g++ -Wall -O3 -o ./bin/SameWav.exe main.cpp
+          ./bin/SameWav.exe TestTrack.wav TestTrack.wav || exit 1
+        shell: pwsh
+
+      - name: build-test-mac
+        if: matrix.os == 'macos-11' 
+        run: |
+          g++ -Wall -O3 -o ./bin/SameWav main.cpp
+          ./bin/SameWav TestTrack.wav TestTrack.wav || exit 1
+        shell: bash
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: SameWav-${{matrix.artifact_ext}}
+          path: ./bin/
+

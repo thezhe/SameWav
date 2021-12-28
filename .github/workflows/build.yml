@@ -1,0 +1,19 @@
+# name: Build and Test
+
+# on:
+#   push:
+#    branches:
+#     - master
+
+# jobs:
+#   build:
+#     name: build-native
+#     runs-on: ${{matrix.os}}
+#     strategy:
+#       matrix:
+#         os: [windows-latest, macos-11]
+#         include:
+#           - os: macos-11
+#             artifact_ext: mac
+#           - os: windows-latest
+#             artifact_ext: win

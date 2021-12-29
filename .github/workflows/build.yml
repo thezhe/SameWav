@@ -43,7 +43,7 @@ jobs:
           cd ..
           ./bin/SameWav.app tests/TestTrack.wav tests/TestTrack.wav || exit 1
           ./bin/SameWav.app tests/TestTrack.wav tests/TestTrackModified.wav && exit 1
-        shell: bash
+        shell: bash --noprofile --norc {0}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v1

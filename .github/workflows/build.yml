@@ -32,7 +32,6 @@ jobs:
           g++ -O3 -std=c++11 -o SameWav.exe ../main.cpp
           cd ..
           ./bin/SameWav.exe tests/TestTrack.wav tests/TestTrack.wav
-          ./bin/SameWav.exe tests/TestTrack.wav tests/TestTrackModified.wav
         shell: pwsh
 
       - name: build-test-mac
@@ -43,7 +42,6 @@ jobs:
           g++ -O3 -std=c++11 -o SameWav.app ../main.cpp
           cd ..
           ./bin/SameWav.app tests/TestTrack.wav tests/TestTrack.wav || exit 1
-          ./bin/SameWav.app tests/TestTrack.wav tests/TestTrackModified.wav || exit 1
         shell: bash
 
       - name: Upload artifact

@@ -36,5 +36,5 @@
 
 # Test and Binary Files
 !tests/*.wav
-!bin/*.exe
-!bin/*.app
+!builds/*.exe
+!builds/*.app

@@ -31,6 +31,10 @@
 *.out
 *.app
 
-# Test Files
+# Local test data
 *.wav
-!TestTrack.wav
+
+# Test and Binary Files
+!tests/*.wav
+!bin/*.exe
+!bin/*.app

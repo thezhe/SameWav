@@ -27,15 +27,17 @@ jobs:
       - name: build-test-win
         if: matrix.os == 'windows-latest' 
         run: |
-          g++ -Wall -O3 -o ./bin/SameWav.exe main.cpp
-          ./bin/SameWav.exe TestTrack.wav TestTrack.wav || exit 1
+          g++ -O3 -o ./bin/SameWav.exe main.cpp
+          ./bin/SameWav.exe tests/TestTrack.wav tests/TestTrack.wav || exit 1
+          ./bin/SameWav.exe tests/TestTrack.wav tests/TestTrackModified.wav && exit 1
         shell: pwsh
 
       - name: build-test-mac
         if: matrix.os == 'macos-11' 
         run: |
-          g++ -Wall -O3 -o ./bin/SameWav main.cpp
-          ./bin/SameWav TestTrack.wav TestTrack.wav || exit 1
+          g++ -O3 -o ./bin/SameWav.app main.cpp
+          ./bin/SameWav.app tests/TestTrack.wav tests/TestTrack.wav || exit 1
+          ./bin/SameWav.app tests/TestTrack.wav tests/TestTrackModified.wav || exit 1
         shell: bash
 
       - name: Upload artifact

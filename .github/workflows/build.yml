@@ -42,7 +42,7 @@ jobs:
         run: |
           mkdir -p bin
           cd bin
-          g++ -O3 -o ./bin/SameWav.app main.cpp
+          g++ -O3 -o SameWav.app main.cpp
           cd ..
           ./bin/SameWav.app tests/TestTrack.wav tests/TestTrack.wav || exit 1
           ./bin/SameWav.app tests/TestTrack.wav tests/TestTrackModified.wav || exit 1

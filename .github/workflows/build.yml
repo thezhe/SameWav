@@ -32,10 +32,10 @@ jobs:
           g++ -O3 -o SameWav.exe ../main.cpp
           cd ..
           ./bin/SameWav.exe tests/TestTrack.wav tests/TestTrack.wav
-          if %errorlevel% neq 0 exit /b 1
+          if %ERRORLEVEL% neq 0 exit /b 1
           ./bin/SameWav.exe tests/TestTrack.wav tests/TestTrackModified.wav
-          if %errorlevel% neq 1 exit /b 1
-        shell: pwsh
+          if %ERRORLEVEL% neq 1 exit /b 1
+        shell: cmd
 
       - name: build-test-mac
         if: matrix.os == 'macos-11' 

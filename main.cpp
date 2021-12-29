@@ -41,11 +41,14 @@ bool sameWav (string path0, string path1)
 }   
 
 int main (int argc, char* argv[]) {
-    if (argc != 3)
-        cout << "Usage: ./SameWave.exe <wav file 0> <wav file 1>\n";
-    
-    if (!sameWav(argv[1], argv[2]))
+    if (argc  < 3 || argc > 4)
+    {
+        cout << "Usage: ./SameWave.exe <wav file 0> <wav file 1> [invert exit code]\n";
         return 1;
+    }
 
-    return 0;
+    if (!sameWav(argv[1], argv[2]))
+        return (argc == 3 ? 1 : 0);
+
+    return (argc == 3 ? 0 : 1);
 }

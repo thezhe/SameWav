@@ -17,17 +17,17 @@ bool sameWav (string path0, string path1)
     
     if (file0.getSampleRate() != file1.getSampleRate())
     {
-        cout << "SameWav (" + path0 + ", " + path1 + "): SampleRate mismatch" << endl;
+        cout << "ERROR SameWav (" + path0 + ", " + path1 + "): SampleRate mismatch" << endl;
         return false;
     }
     if (file0.getNumSamplesPerChannel() != file1.getNumSamplesPerChannel())
     {
-        cout << "SameWav (" + path0 + ", " + path1 + "): NumSamplesPerChannel mismatch" << endl;
+        cout << "ERROR SameWav (" + path0 + ", " + path1 + "): NumSamplesPerChannel mismatch" << endl;
         return false;
     }
     if (file0.getNumChannels() != file1.getNumChannels())
     {
-        cout << "SameWav (" + path0 + ", " + path1 + "): NumChannels mismatch" << endl;
+        cout << "ERROR SameWav (" + path0 + ", " + path1 + "): NumChannels mismatch" << endl;
         return false;
     }
 
@@ -45,7 +45,7 @@ bool sameWav (string path0, string path1)
             if (file0.samples[i][j] != file1.samples[i][j] && same)
             {
                 same = false;
-                cout << "SameWav (" + path0 + ", " + path1 + "): First sample mismatch at frame " << j << ", channel " << i << "; ";
+                cout << "ERROR SameWav (" + path0 + ", " + path1 + "): First sample mismatch at frame " << j << ", channel " << i << "; ";
             }
         }
     }    

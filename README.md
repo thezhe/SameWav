@@ -1,14 +1,12 @@
 # SameWav (WIP)
-CLI for determining if two .wav files have identical sets of sample frames. For CI, Unit Tests, and anything that requires two identical sets of .wav data.
+CLI for checking if two .wav files have identical sets of sample frames. For CI, Unit Tests, and anything that requires checking two sets of .wav data. NOTE: The program always returns exit code 0, so by default it is used for logging.
 
 ## Usage
 On Windows:  
-```./builds/SameWav.exe <wav file 0> <wav file 1> [invert exit code]```
+```./builds/SameWav.exe <wav file 0> <wav file 1>```
 
 or on Mac:  
-```./builds/SameWav.app <wav file 0> <wav file 1> [invert exit code]```
+```./builds/SameWav.app <wav file 0> <wav file 1>```
 
 ## Notes
-- `[invert exit code]` may be anything. If it exists, SameWav.exe will exit with 1 given same wav files.
-
-- If the .exe or .app causes a "Permission Denied" error, you may have to run "chmod +x" first. For example on Mac, run `chmod +x ./builds/SameWav.app` before running SameWav.app.
+If the .exe or .app causes a "Permission Denied" error, you may have to run "chmod +x" first. For example on Mac, run `chmod +x ./builds/SameWav.app` before running SameWav.app.

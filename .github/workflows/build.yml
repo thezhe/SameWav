@@ -32,7 +32,7 @@ jobs:
           g++ -O3 -std=c++11 -o SameWav.exe ../main.cpp
           cd ..
           ./bin/SameWav.exe tests/TestTrack.wav tests/TestTrack.wav
-          ./bin/SameWav.exe tests/TestTrack.wav tests/TestTrackModified.wav i
+          ./bin/SameWav.exe tests/TestTrack.wav tests/TestTrackModified.wav
         shell: pwsh
 
       - name: build-test-mac
@@ -43,7 +43,7 @@ jobs:
           g++ -O3 -std=c++11 -o SameWav.app ../main.cpp
           cd ..
           ./bin/SameWav.app tests/TestTrack.wav tests/TestTrack.wav
-          ./bin/SameWav.app tests/TestTrack.wav tests/TestTrackModified.wav i
+          ./bin/SameWav.app tests/TestTrack.wav tests/TestTrackModified.wav
         shell: bash
 
       - name: Upload artifact

@@ -1,7 +1,7 @@
 # SameWav
 CLI for checking if two .wav files have identical sets of sample frames. For CI, Unit Tests, and anything that requires checking two sets of .wav data. 
 
-## Windows (PowerShell)
+## Windows x64 (PowerShell)
 Setup
 ```powershell
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
@@ -9,17 +9,17 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
 ```
 Usage
 ```powershell
-.\builds\SameWav.exe <wav file 0> <wav file 1>
+.\builds\SameWav.exe wav0 wav1
 ```
 
-## Mac (Bash)
+## Mac x64 (Bash)
 Setup
 ```bash
 ./updateSub.sh
 ```
 Usage
 ```bash
-./builds/SameWav.app <wav file 0> <wav file 1>
+./builds/SameWav.app wav0 wav1
 ```
 
 ## Output

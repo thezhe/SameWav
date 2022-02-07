@@ -83,7 +83,12 @@ int main (int argc, char* argv[])
 {
     if (argc != 3)
     {
-        cerr << "Usage: ./SameWave.exe <wav file 0> <wav file 1>\n";
+        #if defined (__APPLE__)
+            cerr << "Usage: ./SameWave.app wav0 wav1" << endl;
+        #elif defined (_WIN64)
+            cerr << "Usage: .\\SameWav.exe wav0 wav1" << endl;
+        #endif
+
         return 1;
     }
 

@@ -56,13 +56,14 @@ jobs:
           $temp=(.\bin\SameWav.exe tests\TestTrack.wav tests\TestTrack.wav)
           if ($temp) { exit 1 }
           .\bin\SameWav.exe tests\TestTrack.wav tests\TestTrackModified.wav | findstr "ERROR"
+          if (0 -ne $?) { exit $? }
         shell: pwsh
 
       - name: Test (mac)
         if: matrix.os == 'macos-11' 
         run: |
-          ./bin/SameWav.app tests/TestTrack.wav tests/TestTrack.wav | grep -q ERROR && exit 1
-          ./bin/SameWav.app tests/TestTrack.wav tests/TestTrackModified.wav | grep -q ERROR || exit 1
+          ./bin/SameWav.app tests/TestTrack.wav tests/TestTrack.wav | grep ERROR && exit 1
+          ./bin/SameWav.app tests/TestTrack.wav tests/TestTrackModified.wav | grep ERROR || exit 1
         shell: bash
 
       - name: Upload artifact

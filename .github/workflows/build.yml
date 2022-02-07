@@ -26,7 +26,7 @@ jobs:
 
       - name: Update Submodules (win)
         if: matrix.os == 'windows-latest' 
-        run: .\updateSub.bat
+        run: .\updateSub.ps1
         shell: pwsh
 
       - name: Update Submodules (mac)

@@ -56,7 +56,7 @@ jobs:
           $temp=(.\bin\SameWav.exe tests\TestTrack.wav tests\TestTrack.wav)
           if ($temp) { exit 1 }
           .\bin\SameWav.exe tests\TestTrack.wav tests\TestTrackModified.wav | findstr "ERROR"
-          if (0 -ne $?) { exit $? }
+          if (-not ($?)) { exit 1 }
         shell: pwsh
 
       - name: Test (mac)

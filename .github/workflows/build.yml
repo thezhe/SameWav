@@ -31,7 +31,7 @@ jobs:
 
       - name: Update Submodules (mac)
         if: matrix.os == 'macos-11' 
-        run: ./updateSub.sh
+        run: sh ./updateSub.sh
         shell: bash
 
       - name: Build (win)

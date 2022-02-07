@@ -1,3 +1,22 @@
+/** GNU GPLv3 License
+
+    Copyright (C) 2021 ZheDeng
+    TheZheDeng@gmail.com
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
 #include "AudioFile/AudioFile.h"
 #include <iostream>
 #include <math.h>
@@ -15,6 +34,11 @@ bool sameWav (string path0, string path1)
     file0.load(path0);
     file1.load(path1);
     
+    if (file0.getBitDepth() != file1.getBitDepth())
+    {
+        cout << "ERROR SameWav (" + path0 + ", " + path1 + "): BitDepth mismatch" << endl;
+        return false;
+    }
     if (file0.getSampleRate() != file1.getSampleRate())
     {
         cout << "ERROR SameWav (" + path0 + ", " + path1 + "): SampleRate mismatch" << endl;
@@ -30,7 +54,6 @@ bool sameWav (string path0, string path1)
         cout << "ERROR SameWav (" + path0 + ", " + path1 + "): NumChannels mismatch" << endl;
         return false;
     }
-
 
     double peak0, peak1;
     bool same = true;
@@ -56,10 +79,11 @@ bool sameWav (string path0, string path1)
     return same;
 }   
 
-int main (int argc, char* argv[]) {
-    if (argc  < 3 || argc > 4)
+int main (int argc, char* argv[]) 
+{
+    if (argc != 3)
     {
-        cout << "Usage: ./SameWave.exe <wav file 0> <wav file 1>\n";
+        cerr << "Usage: ./SameWave.exe <wav file 0> <wav file 1>\n";
         return 1;
     }
 

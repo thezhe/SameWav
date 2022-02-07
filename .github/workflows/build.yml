@@ -24,27 +24,45 @@ jobs:
         with:
           submodules: recursive
 
-      - name: build-test-win
+      - name: Update Submodules (win)
         if: matrix.os == 'windows-latest' 
-        run: |
-          mkdir -p bin
-          cd bin
-          g++ -O3 -std=c++11 -o SameWav.exe ../main.cpp
-          cd ..
-          $temp=./bin/SameWav.exe tests/TestTrack.wav tests/TestTrack.wav
-          if ($temp) { exit /b 1 }
-          ./bin/SameWav.exe tests/TestTrack.wav tests/TestTrackModified.wav | findstr "ERROR"
+        run: .\updateSub.bat
         shell: pwsh
 
-      - name: build-test-mac
+      - name: Update Submodules (mac)
+        if: matrix.os == 'macos-11' 
+        run: ./updateSub.sh
+        shell: bash
+
+      - name: Build (win)
+        if: matrix.os == 'windows-latest' 
+        run: |
+          mkdir bin
+          cd bin
+          g++ -O3 -std=c++11 -o SameWav.exe ..\main.cpp
+        shell: pwsh
+
+      - name: Build (mac)
         if: matrix.os == 'macos-11' 
         run: |
           mkdir -p bin
           cd bin
           g++ -O3 -std=c++11 -o SameWav.app ../main.cpp
-          cd ..
+        shell: bash
+
+      - name: Test (win)
+        if: matrix.os == 'windows-latest' 
+        run: |
+          $temp=(.\bin\SameWav.exe tests\TestTrack.wav tests\TestTrack.wav)
+          if ($temp) { exit 1 }
+          .\bin\SameWav.exe tests\TestTrack.wav tests\TestTrackModified.wav | findstr "ERROR"
+        shell: pwsh
+
+      - name: Test (mac)
+        if: matrix.os == 'macos-11' 
+        run: |
           ./bin/SameWav.app tests/TestTrack.wav tests/TestTrack.wav | grep -q ERROR && exit 1
-          ./bin/SameWav.app tests/TestTrack.wav tests/TestTrackModified.wav | grep -q 'ERROR' || exit 1
+          ./bin/SameWav.app tests/TestTrack.wav tests/TestTrackModified.wav | grep -q ERROR || exit 1
         shell: bash
 
       - name: Upload artifact

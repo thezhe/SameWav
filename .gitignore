@@ -1,40 +1,15 @@
-# Prerequisites
-*.d
+# VSCode
+.vscode/*
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
+# Builds
 *.exe
 *.out
 *.app
 
-# Local test data
+# Tests
 *.wav
 
-# Test and Binary Files
+# Exceptions
 !tests/*.wav
 !builds/*.exe
 !builds/*.app

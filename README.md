@@ -15,7 +15,7 @@ Usage
 ## Mac x64 (Bash)
 Setup
 ```bash
-./updateSub.sh
+sh ./updateSub.sh
 ```
 Usage
 ```bash
